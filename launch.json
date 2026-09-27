@@ -1,0 +1,22 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "ObservationBufferToken",
+    "name": "Observation Buffer",
+    "symbol": "OBS",
+    "decimals": 18
+  },
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "contracts": [
+    {
+      "contract": "ObservationBuffer",
+      "constructorArgs": []
+    }
+  ],
+  "notes": "Application contract: ObservationBuffer (src/ObservationBuffer.sol, pragma solidity 0.8.24). A permissionless ring buffer that retains the latest 16 (timestamp, value) observations; timestamps must be strictly greater than the newest stored one, values span uint256, logical reads enumerate oldest to newest across wraparound, out-of-range reads revert. It has no constructor (constructorArgs is empty), no owner, no privileged role, no $owner or $token dependency, never holds ETH or tokens, and its runtime (1614 bytes at optimizer_runs=200, cancun, bytecode_hash none) contains no DELEGATECALL, CALLCODE or SELFDESTRUCT. Deployment order is trivial: one contract, no backward references. Behavioural caveat carried over from the README and review: timestamps are caller supplied and unbounded, so any writer can advance the latest timestamp arbitrarily and a write of type(uint256).max freezes the buffer permanently; consumers must filter by the ObservationWritten.writer field. BLOCKING GAP, stated plainly: the accepted tree contains NO launch token source. The brief said 'do not create a token', and the builders delivered only ObservationBuffer, its tests and deploy script. The evm_project manifest schema makes the token block mandatory, so the identifier ObservationBufferToken (name 'Observation Buffer', symbol OBS, 18 decimals) is a placeholder describing the fixed-supply ERC-20 that a later builder assignment must add (no constructor arguments, 18 decimals, exactly 10^27 minor units minted to msg.sender, no mint/admin/upgrade path). Until that contract exists under this exact name, the attestation step cannot produce IMD_TOKEN_CREATION_CODE and the protected Project floor cannot run; this manifest should not be treated as deployable before that source is accepted. Pool: paired against native ETH (zero address) on Sepolia, fee 3000, tickSpacing 60, initialPrice 79228162514264337593543950336 (sqrtPriceX96 for 1:1); no hook. The deployer derives the effective opening price from policy when it pins initialMarketCapWei. Local verification on 2026-09-27: forge build --offline and forge test --offline pass (31 tests, 0 failed) with forge 1.8.3 / solc 0.8.24. deployments/sepolia.json still records status NOT_DEPLOYED (dry run only, no funded account); the network deployer performs the actual Sepolia broadcast after review. No supply, allocation, owner, chainId or hash fields belong in this file; they come from policy and attestation."
+}
