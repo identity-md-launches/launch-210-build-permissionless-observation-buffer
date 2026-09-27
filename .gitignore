@@ -1,0 +1,6 @@
+out/
+cache/
+broadcast/**/dry-run/
+test/scratch/
+.env
+.env.*

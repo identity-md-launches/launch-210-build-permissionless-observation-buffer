@@ -1,0 +1,27 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "contract": "ObservationBuffer",
+  "source": "src/ObservationBuffer.sol",
+  "compiler": "solc 0.8.24, optimizer on (200 runs), evm cancun, bytecode_hash none, cbor_metadata false",
+  "constructorArgs": [],
+  "constructorArgsEncoded": "0x",
+  "status": "NOT_DEPLOYED",
+  "statusDetail": "Deployment was dry-run against Sepolia (simulation succeeded, ~523k gas estimated) but not broadcast: no funded Sepolia account was available to the contributor environment and no wallet key is read by this task. Fill in the fields below after running the broadcast command documented in README.md.",
+  "dryRun": {
+    "sender": "0x000000000000000000000000000000000000dEaD",
+    "predictedAddressForThatSender": "0x9B137463d4E7986D7f535f9B79e28b4EF1938E9b",
+    "estimatedGas": 522943,
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "date": "2026-09-27"
+  },
+  "address": null,
+  "deploymentTransactionHash": null,
+  "deployer": null,
+  "blockNumber": null,
+  "explorer": null,
+  "explorerTemplate": {
+    "address": "https://sepolia.etherscan.io/address/<address>",
+    "transaction": "https://sepolia.etherscan.io/tx/<txHash>"
+  }
+}
